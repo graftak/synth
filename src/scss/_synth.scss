@@ -1,0 +1,10 @@
+#synth {
+  margin-top: 20%;
+
+  @import 'panel';
+  @import 'settings';
+  
+  #keyboard {
+    width: 100%;
+  }
+}

@@ -1,0 +1,92 @@
+.panel {
+    display: flex;
+    position: relative;
+    z-index: 1;
+    background-color: $color1;
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+
+    * {
+        text-transform: uppercase;
+    }
+
+    .panel-area {
+        border: 1px solid #91aaac;
+        position: relative;
+        border-radius: 4px;
+        background-color: #6b8c8e;
+        padding: 6px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+
+        &:first-of-type {
+            margin-left: 16px;
+        }
+        
+        &:not(:first-of-type) {
+            margin-left: 12px;
+        }
+    }
+
+    .knobs {
+        width: 80px;
+        margin-left: 8px;
+    }
+
+    .env, .knobs {
+        float: left;
+        background-color: #5b7779;
+        padding: 4px;
+        border-radius: 2px;
+    }
+
+    .osc-enabled {
+        float: left;
+    }
+
+    .select-input {
+        background-color: $color2;
+        border: 0;
+        border-radius: 4px;
+        margin-left: 4px;
+        float: left;
+        padding: .1rem;
+        overflow-y: hidden;
+        font-size: .75rem;
+
+        option {
+            color: $color3;
+        }
+    }
+
+    @import 'scss/patch-pane';
+
+    #mute {
+        top: 10px;
+
+        &.muted {
+            color: $color4;
+            background-color: #fcc;
+            border-color: $color1;
+        }
+    }
+
+    #settings-toggle {
+        top: 35px;
+    }
+
+    .abs-value-controls {
+        position: relative;
+        display: inline-grid;
+        width: 36px;
+        padding: 0;
+        margin: 0 4px 4px 0;
+        float: left;
+
+        label {
+            text-align: center;
+            color: $color5;
+            font-size: 5.5pt;
+        }
+    }
+}

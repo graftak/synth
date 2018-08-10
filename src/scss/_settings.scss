@@ -1,0 +1,25 @@
+#settings {
+    margin-top: -144px;
+    transition: margin-top .4s;
+    
+    > div {
+        border: solid $color1;
+        background-color: $color2;
+        border-width: 0 21px 10px;
+        padding-top: 6px;
+
+        label[for=midi-input] {
+            position: relative;
+            display: flex;
+            margin-left: 12px;
+            color: $color4;
+            font-size: .8rem;
+        }
+
+        #midi-input {
+            margin-top: 4px;
+            outline: 0;
+            background-color: $color4;
+        }
+    }
+}

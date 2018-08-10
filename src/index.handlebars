@@ -1,0 +1,99 @@
+<main role="main">
+    <div class="container">
+        <div id="synth">
+            <div class="panel">
+                <div id="patch-pane" class="panel-area">
+                    <select class="select-input" size=4 id="patches"></select>
+
+                    <div id="patch-save-pane">
+                        <input type="text" id="patch-name" value=""/>
+                        <button id="save-patch" role="button">Save</button>
+                    </div>
+                </div>
+
+                <div class="panel-area oscillator-area">
+                    <select class="select-input osc-type"  data-osc-id="1" size=4>
+                        <option value="sawtooth" selected>Sawtooth</option>
+                        <option value="triangle">Triangle</option>
+                        <option value="sine">Sine</option>
+                        <option value="square">Square</option>
+                    </select>
+
+                    <webaudio-switch class="osc-enabled" data-osc-id="1" width="16" height="16" colors="#6d0a0d;#6b8c8e;#c50e14"></webaudio-switch>
+
+                    <select class="select-input osc-type" data-osc-id="2" size=4>
+                        <option value="sawtooth" selected>Sawtooth</option>
+                        <option value="triangle">Triangle</option>
+                        <option value="sine">Sine</option>
+                        <option value="square">Square</option>
+                    </select>
+                    
+                    <webaudio-switch class="osc-enabled" data-osc-id="2" width="16" height="16" colors="#6d0a0d;#6b8c8e;#c50e14"></webaudio-switch>
+
+                    <div class="knobs">
+                        <div id="drift-controls" class="abs-value-controls">
+                            <webaudio-knob id="drift" src="knobs/JP8000.png" sprites="100" min="0" max="100" defvalue="0" valuetip=0></webaudio-knob>
+                            <label for="drift">Drift</label>
+                        </div>
+                        
+                        <div id="detune-controls" class="abs-value-controls">
+                            <webaudio-knob id="detune" src="knobs/JP8000.png" sprites="100" min="0" max="100" defvalue="0" valuetip=0></webaudio-knob>
+                            <label for="detune">Detune</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-area filter-area">
+                    <div class="env" data-env-name="filter_freq">
+                        <webaudio-slider class="attack" min=0 max=.5 step=.01 src="knobs/vsliderbody.png" knobsrc="knobs/vsliderknob.png"></webaudio-slider>
+                        <webaudio-slider class="decay" min=0 max=2 step=.001 src="knobs/vsliderbody.png" knobsrc="knobs/vsliderknob.png"></webaudio-slider>
+                        <webaudio-slider class="sustain" min=0 max=1 step=.01 src="knobs/vsliderbody.png" knobsrc="knobs/vsliderknob.png"></webaudio-slider>
+                        <webaudio-slider class="release" min=0 max=4 step=.01 src="knobs/vsliderbody.png" knobsrc="knobs/vsliderknob.png"></webaudio-slider>
+                    </div>
+
+                    <div class="knobs">
+                        <div id="filter-freq-controls" class="abs-value-controls">
+                            <webaudio-knob id="filter-freq" src="knobs/JP8000.png" sprites="100" min="0" max="14000" valuetip=0 midilearn=1></webaudio-knob>
+                            <label for="filter-freq">Cutoff</label>
+                        </div>
+                        
+                        <div id="filter-q-controls" class="abs-value-controls">
+                            <webaudio-knob id="filter-q" src="knobs/JP8000.png" sprites="100" min="0" max="30" valuetip=0 midilearn=1></webaudio-knob>
+                            <label for="filter-q">Res</label>
+                        </div>
+
+                        <div id="filter-env-amount-controls" class="abs-value-controls">
+                            <webaudio-knob id="filter-env-amount" src="knobs/JP8000.png" sprites="100" min="0" max="44100" valuetip=0></webaudio-knob>
+                            <label for="filter-env-amount">Flt env</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-area">
+                    <div class="env" data-env-name="amp">
+                        <webaudio-slider class="attack" min=0 max=1 step=.01 src="knobs/vsliderbody.png" knobsrc="knobs/vsliderknob.png"></webaudio-slider>
+                        <webaudio-slider class="decay" min=0 max=.8 step=.001 src="knobs/vsliderbody.png" knobsrc="knobs/vsliderknob.png"></webaudio-slider>
+                        <webaudio-slider class="sustain" min=0 max=1 step=.01 src="knobs/vsliderbody.png" knobsrc="knobs/vsliderknob.png"></webaudio-slider>
+                        <webaudio-slider class="release" min=0 max=4 step=.01 src="knobs/vsliderbody.png" knobsrc="knobs/vsliderknob.png"></webaudio-slider>
+                    </div>
+                </div>
+
+                <div class="panel-area global-controls">
+                    <button id="mute" role="button" data-state="false">Mute</button>
+                    <button id="settings-toggle" role="button">Settings</button>
+                </div>
+            </div>
+            
+            <div id="settings">
+                <div>
+                    <label for="midi-input">MIDI Input</label>
+                    <select id="midi-input" size=4 class="select-input"></select>
+                </div>
+            </div>
+            
+            <div id="keyboard"></div>
+        </div>
+    </div>
+
+    <div id="midi-input-monitor"></div>
+</main>

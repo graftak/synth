@@ -1,0 +1,17 @@
+#midi-input-monitor {
+    display: none;
+    opacity: .8;
+    color: #eee;
+    background-color: black;
+    padding: 10px;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 8pt;
+    white-space: pre;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 150px;
+    height: 200px;
+    overflow-y: scroll;
+}

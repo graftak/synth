@@ -1,0 +1,36 @@
+//@import "bootstrap/custom";
+//@import "node_modules/bootstrap/scss/bootstrap";
+
+$color1: rgba(143, 165, 169, 1);
+$color2: rgb(34, 14, 14);
+$color3: rgb(197, 14, 20);
+$color4: rgba(76, 134, 138, 1);
+$color5: rgba(255, 255, 255, 1);
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  overflow-y: scroll;
+  
+  @import 'scss/midi-input-monitor';
+
+  input, textarea, select {
+    outline: none;
+  }
+
+  .container {
+    position: relative;
+    width: 981px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    
+    @import 'scss/synth';
+
+    .dial {
+      display: none;
+    }
+  }
+}
