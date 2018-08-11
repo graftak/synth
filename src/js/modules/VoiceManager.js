@@ -1,7 +1,7 @@
 var Voice = require("./Voice");
 
-function VoiceManager(ctx, output, polyphony) {
-    this.ctx = ctx;
+function VoiceManager(synth, output, polyphony) {
+    this.synth = synth;
     this.output = output;
     this.polyphony = polyphony;
     
@@ -15,7 +15,7 @@ VoiceManager.prototype = {
         this.currVoiceId = -1;
 
         for (var i = 0; i < this.polyphony; i++) {
-            this.voices.push(new Voice(this.ctx, this.output, i));
+            this.voices.push(new Voice(this.synth, this.output, i));
         }
         
         var that = this;

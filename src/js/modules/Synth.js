@@ -36,7 +36,7 @@ Synth.prototype = {
         if (currPatchName === undefined || currPatchName === 'undefined') {
             currPatchName = 'init';
         }
-
+        
         this.loadPatch(currPatchName);
         this.populatePatchList(currPatchName);
         this.setUI();
@@ -206,7 +206,7 @@ console.log(oscId, val);
 
         this.effect.connect(this.ctx.destination);
         this.input = this.effect;
-        this.voiceManager = new VoiceManager(this.ctx, this.input, this.polyphony);
+        this.voiceManager = new VoiceManager(this, this.input, this.polyphony);
 
         return this;
     },
@@ -267,8 +267,6 @@ console.log(oscId, val);
         
         $(".osc-enabled").each(function () {
             var oscId = $(this).data("osc-id");
-
-            console.log(patchData.osc[oscId].enabled ? 1 : 0);
 
             $(this)[0].setValue(patchData.osc[oscId].enabled ? 1 : 0);
         });

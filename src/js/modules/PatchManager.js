@@ -4,12 +4,15 @@ var Patch = require("./Patch");
 function PatchManager(patch) {
     this.cookie = new Cookie();
     this.patch = patch || new Patch();
+    this.callbacks = {
+        patch_loaded: []
+    };
 }
 
 PatchManager.prototype = {
     PatchManager: PatchManager,
     create: function() {
-        alert('created');
+        alert('create: not implemented yet.');
 
         return this;
     },
@@ -19,11 +22,10 @@ PatchManager.prototype = {
         }
 
         var stringified = this.cookie.getCookie('patch_' + name);
-        
+
         if (stringified !== '') {
             this.patch.set(JSON.parse(stringified));
-
-            jQuery.event.trigger('patchLoaded', this.patch.get());
+            this.notify('patch_loaded');
         }
 
         return this;
@@ -41,7 +43,7 @@ PatchManager.prototype = {
         return this;
     },
     delete: function() {
-        alert('deleted');
+        alert('delete: not implemented yet.');        
 
         return this;
     },
@@ -82,6 +84,20 @@ PatchManager.prototype = {
         var name = this.cookie.getCookie('last_selected_patch') || 'init';
 
         return name;
+    },
+    registerCallback: function(type, cb) {
+        this.callbacks[type].push(cb);
+
+        return this;
+    },
+    notify: function(type) {
+        var that = this;
+
+        $(this.callbacks[type]).each(function() {
+            console.log('Patch manager notifier: Calling ' + that.callbacks[type].length + ' callbacks for type ' + type);
+            
+            this(that.patch);
+        });
     }
 }
 

@@ -1,6 +1,6 @@
-function Amp(ctx) {
-    this.ctx = ctx;
-    this.gain = ctx.createGain();
+function Amp(synth) {
+    this.synth = synth;
+    this.gain = this.synth.ctx.createGain();
     this.gain.gain.value = 0;
     this.input = this.gain;
     this.output = this.gain;

@@ -1,8 +1,8 @@
-function Osc(ctx, voiceId, id, tune) {
-    this.ctx = ctx;
+function Osc(synth, voiceId, id, tune) {
+    this.synth = synth;
     this.voiceId = voiceId;
     this.id = id;
-    this.oscillator = this.ctx.createOscillator();
+    this.oscillator = this.synth.ctx.createOscillator();
     this.input = this.oscillator;
     this.output = this.oscillator;
     this.outputNode;
@@ -28,12 +28,13 @@ function Osc(ctx, voiceId, id, tune) {
         })
         .bind('paramChangeOsc' + this.id, function(_, params) {
             that.setOscType(params.type);
-        })
-        .bind('patchLoaded', function(_, patchData) {
-            that.setEnabled(patchData.osc[that.id].enabled);
-            that.setOscType(patchData.osc[that.id].type);
-            that.setDrift(patchData.osc.drift);
         });
+
+    this.synth.patchManager.registerCallback('patch_loaded', function(patch) {
+        that.setEnabled(patch.get().osc[that.id].enabled);
+        that.setOscType(patch.get().osc[that.id].type);
+        that.setDrift(patch.get().osc.drift);
+    });
 
     return this;
 }
@@ -53,7 +54,7 @@ Osc.prototype = {
         var driftAmt = Math.random() * this.drift;
 
         this.oscillator.frequency.setValueAtTime(value + (driftAmt - this.drift / 2) / 10
-            + this.tune / 10, this.ctx.currentTime);
+            + this.tune / 10, this.synth.ctx.currentTime);
 
         return this;
     },

@@ -1,8 +1,8 @@
-function Filter(ctx, voiceId, env) {
-    this.ctx = ctx;
+function Filter(synth, voiceId, env) {
+    this.synth = synth;
     this.voiceId = voiceId;
     this.env = env;
-    this.filter = this.ctx.createBiquadFilter();
+    this.filter = this.synth.ctx.createBiquadFilter();
     this.filter.type = "lowpass";
     this.input = this.filter;
     this.output = this.filter;
@@ -32,15 +32,15 @@ function Filter(ctx, voiceId, env) {
 Filter.prototype = {
     Filter: Filter,
     setFreq(amt) {
-        this.filter.frequency.setValueAtTime(amt, this.ctx.currentTime);
+        this.filter.frequency.setValueAtTime(amt, this.synth.ctx.currentTime);
         this.env.setMinValue(amt);
     },
     setQ(amt) {
         //console.log('q: ' + amt);
-        this.filter.Q.setValueAtTime(amt, this.ctx.currentTime);
+        this.filter.Q.setValueAtTime(amt, this.synth.ctx.currentTime);
     },
     setGain(amt) {
-        this.filter.gain.setValueAtTime(amt, this.ctx.currentTime);
+        this.filter.gain.setValueAtTime(amt, this.synth.ctx.currentTime);
     },
     setEnvAmt(amt) {
         this.env.setMaxValue(amt);

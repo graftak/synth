@@ -1,5 +1,5 @@
-function EnvelopeGenerator(ctx, voiceId, name, velocityEnabled) {
-    this.ctx = ctx;
+function EnvelopeGenerator(synth, voiceId, name, velocityEnabled) {
+    this.synth = synth;
     this.voiceId = voiceId;
     this.name = name;
     this.node = {};
@@ -86,7 +86,7 @@ EnvelopeGenerator.prototype = {
     noteOn: function (freq, velocity) {
         var maxAmt;
 
-        now = this.ctx.currentTime;
+        now = this.synth.ctx.currentTime;
 
         // The note frequency is the identifier for this envelope's voice (used
         // to handle a note_off event later).
@@ -135,7 +135,7 @@ EnvelopeGenerator.prototype = {
         // this.node.exponentialRampToValueAtTime(sustAmt, now + this.attack + this.decay);
     },
     noteOff: function () {
-        now = this.ctx.currentTime;
+        now = this.synth.ctx.currentTime;
         var currValue = this.node.value;
         var minValue = this.minValue;
         var release = this.release;

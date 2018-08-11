@@ -4,8 +4,8 @@ var Amp = require("./Amp");
 var Compressor = require("./Compressor");
 var Filter = require("./Filter");
 
-function Voice(ctx, output, id) {
-    this.ctx = ctx;
+function Voice(synth, output, id) {
+    this.synth = synth;
     this.output = output;
     this.id = id;
 
@@ -17,10 +17,10 @@ function Voice(ctx, output, id) {
     this.filterFreqEnvSustain = .9;
     this.filterFreqEnvRelease = .4;
 
-    this.osc1 = new Osc(this.ctx, this.id, 1, -this.detune);
-    this.osc2 = new Osc(this.ctx, this.id, 2, this.detune);
+    this.osc1 = new Osc(this.synth, this.id, 1, -this.detune);
+    this.osc2 = new Osc(this.synth, this.id, 2, this.detune);
 
-    this.filterFreqEnv = new Env(this.ctx, this.id, 'filter_freq', true);
+    this.filterFreqEnv = new Env(this.synth, this.id, 'filter_freq', true);
     this.filterFreqEnv.velocityEnabled = true;
     this.filterFreqEnv.setMinValue(this.filterFreqEnvMinValue);
     this.filterFreqEnv.setMaxValue(this.filterFreqEnvAmt);
@@ -29,12 +29,12 @@ function Voice(ctx, output, id) {
     this.filterFreqEnv.setSustain(this.filterFreqEnvSustain);
     this.filterFreqEnv.setRelease(this.filterFreqEnvRelease);
 
-    this.filter = new Filter(this.ctx, this.id, this.filterFreqEnv);
+    this.filter = new Filter(this.synth, this.id, this.filterFreqEnv);
 
-    this.amp = new Amp(this.ctx);
-    this.ampEnv = new Env(this.ctx, this.id, 'amp');
+    this.amp = new Amp(this.synth);
+    this.ampEnv = new Env(this.synth, this.id, 'amp');
 
-    this.compressor = new Compressor(this.ctx);
+    this.compressor = new Compressor(this.synth);
 
     // Routing.
     this.osc1.connect(this.filter);
